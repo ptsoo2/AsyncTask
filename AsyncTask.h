@@ -69,8 +69,8 @@ namespace coro
 
 			struct deleter_t
 			{
-				// release °úÁ¤ÀÌ Æ÷ÇÔµÇ¹Ç·Î ¼Ò¸êÀÚ¸¦ È£ÃâÇÏÁö ¾Ê´Â´Ù.
-				// ÄÚ·çÆ¾ ½ºÅÃ¿¡¼­ Á¤¸®µÇµµ·Ï À¯µµÇÑ´Ù.
+				// release ê³¼ì •ì´ í¬í•¨ë˜ë¯€ë¡œ ì†Œë©¸ìë¥¼ í˜¸ì¶œí•˜ì§€ ì•ŠëŠ”ë‹¤.
+				// ì½”ë£¨í‹´ ìŠ¤íƒì—ì„œ ì •ë¦¬ë˜ë„ë¡ ìœ ë„í•œë‹¤.
 				void operator()(TResult* ptr) const noexcept { free(ptr); }
 			};
 
@@ -85,10 +85,10 @@ namespace coro
 			bool				await_ready() const noexcept { return false; }
 			TResult				await_resume() noexcept
 			{
-				// °á°ú¸¦ ²¨³»ÁÙ ¶§¿¡´Â ÀÇµµÀûÀ¸·Î move ÇØ¼­ rvo ¸¦ ÅÂ¿î´Ù.
+				// ê²°ê³¼ë¥¼ êº¼ë‚´ì¤„ ë•Œì—ëŠ” ì˜ë„ì ìœ¼ë¡œ move í•´ì„œ rvo ë¥¼ íƒœìš´ë‹¤.
 				TResult ret = std::move(*result_);
 				result_.reset();
-				return std::move(ret);
+				return ret;
 			}
 			void				await_suspend(auto handle) noexcept
 			{
@@ -176,8 +176,8 @@ namespace coro
 		class task_promise_type_base
 		{
 		public:
-			std::suspend_never		initial_suspend() noexcept { return {}; }	// Áß´ÜÇÏÁö¾ÊÀ½
-			std::suspend_never		final_suspend() noexcept { return {}; }		// Áß´ÜÇÏÁö¾ÊÀ½
+			std::suspend_never		initial_suspend() noexcept { return {}; }	// ì¤‘ë‹¨í•˜ì§€ì•ŠìŒ
+			std::suspend_never		final_suspend() noexcept { return {}; }		// ì¤‘ë‹¨í•˜ì§€ì•ŠìŒ
 			void					unhandled_exception() {}
 			void					return_void() noexcept {}
 		};
@@ -195,7 +195,7 @@ namespace coro
 	};
 }
 
-// coro::CAsyncTask ·Î »ç¿ëÇÏ´Â ÄÚ·çÆ¾ ÇÔ¼ö¿¡¼­´Â Æ÷ÀÎÅÍ & ·¹ÆÛ·±½º À¯ÇüÀÇ ÀÎÀÚ¸¦ »ç¿ëÇÒ ¼ö ¾ø°Ô °­Á¦ÇÑ´Ù.
+// coro::CAsyncTask ë¡œ ì‚¬ìš©í•˜ëŠ” ì½”ë£¨í‹´ í•¨ìˆ˜ì—ì„œëŠ” í¬ì¸í„° & ë ˆí¼ëŸ°ìŠ¤ ìœ í˜•ì˜ ì¸ìë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ê²Œ ê°•ì œí•œë‹¤.
 template<typename TExecutorTag, NotPointerReferenceTrait... TArgs>
 struct std::coroutine_traits<coro::CAsyncTask<TExecutorTag>, TArgs...>
 {

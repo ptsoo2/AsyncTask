@@ -12,9 +12,6 @@
 - Concept, Coroutine 을 익히기 위한 공개용 문서
   - https://deserted-viscount-8c4.notion.site/coroutine-3d0361ea67344e9c932d565ed949f223
 
-### Content
-- Coroutine 을 정리한 내
-
 ### TODO
 - 성능 테스트
 - Linux 에서의 테스트

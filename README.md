@@ -9,7 +9,7 @@
 - (https://github.com/xotn1270/Simple-Thread-Executor) 의 Coroutine 버전
   - 코루틴 전용 로직을 제외하고, 기본적인 로직은 유사함
 - Task 가 끝나고, Callback 처리를 위한 로직이 추가됨
-- Concept, Coroutine 을 익히기 위한 공개용 문서
+- Concept, Coroutine 을 익히고나서 정리한 공개용 문서
   - https://deserted-viscount-8c4.notion.site/coroutine-3d0361ea67344e9c932d565ed949f223
 
 ### TODO

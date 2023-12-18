@@ -6,7 +6,7 @@
 - example.cpp: simple async thread process with coroutine
 
 ### Content
-- (https://github.com/xotn1270/Simple-Thread-Executor) 의 Coroutine 버전
+- (https://github.com/ptsoo2/Simple-Thread-Executor) 의 Coroutine 버전
   - 코루틴 전용 로직을 제외하고, 기본적인 로직은 유사함
 - Task 가 끝나고, Callback 처리를 위한 로직이 추가됨
 - Concept, Coroutine 을 익히고나서 정리한 공개용 문서
